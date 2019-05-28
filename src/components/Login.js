@@ -30,8 +30,6 @@ const Login = (props) => {
       body: JSON.stringify(user)
     }).then(res => res.json())
     .then(setLocalStorage)
-
-    window.location.pathname = '/'
       
   }
 

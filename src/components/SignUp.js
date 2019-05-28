@@ -34,8 +34,6 @@ const SignUp = (props) => {
     }).then(res => res.json())
     .then(setLocalStorage)
 
-
-    // window.location.pathname = '/'
   }
 
 

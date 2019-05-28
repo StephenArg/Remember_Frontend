@@ -28,6 +28,15 @@
   min-height: 10vh;
   min-width: 50%;
   max-width: 70%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+#text-area-input{
+  display: inline-block;
+  background-color: olivedrab;
+  border: solid black 3px;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 #login {
