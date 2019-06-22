@@ -24,9 +24,19 @@ const TextAreaInput = props => {
     props.setCurrentCondition("closed")
   }
 
+  const handleTextAreaKeys = (e) => {
+    if (e.keyCode === 9) {
+      e.preventDefault()
+      var val = entry,
+      start = e.target.selectionStart,
+      end = e.target.selectionEnd;
+      setEntry(val.substring(0, start) + '\t' + val.substring(end))
+    }
+  }
+
   return (
       <div>
-        <textarea id="text-area-input" rows="12" cols="80" value={entry} onChange={(e)=> setEntry(e.target.value)} >
+        <textarea id="text-area-input" rows="12" cols="80" autoFocus="true" value={entry} onChange={(e)=> setEntry(e.target.value)} onKeyDown={handleTextAreaKeys} >
         </textarea>
         <br></br>
         <button style={{backgroundColor: "olive", border: "solid black 1px"}} onClick={handleSubmit} >Submit Entry</button>

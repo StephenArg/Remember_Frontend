@@ -28,7 +28,11 @@
   min-height: 10vh;
   min-width: 50%;
   max-width: 70%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+  overflow: scroll;
+  text-overflow: ellipsis;
+  white-space: pre;
 }
 
 #text-area-input{

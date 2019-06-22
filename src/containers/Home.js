@@ -5,19 +5,19 @@ import TextAreaInput from '../components/TextAreaInput'
  
 const Home = props => {
 
-  const [randomJournalPost, setRandomJournalPost] = useState(true)
+  const [randomJournalPost, setRandomJournalPost] = useState(false)
   const [currentCondition, setCurrentCondition] = useState("loading")
   const [currentEntry, setCurrentEntry] = useState(null)
 
   useEffect(() => {
 
     const date = {date: props.user.current_date}
+    console.log(date)
+    console.log(props.user)
 
-    if (currentCondition === "loading" && date.date){
-      console.log(date)
+    if (currentCondition === "loading" && date.date !== undefined){
 
       const handleCondition = (e) => {
-        console.log(e)
         if (e.entry === "none"){
           setCurrentCondition("open")
         } else {
@@ -26,7 +26,6 @@ const Home = props => {
         }
       }
 
-      console.log("what")
       fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/verify`, {
       method: "POST",
       headers: {
@@ -35,6 +34,30 @@ const Home = props => {
       body: JSON.stringify(date)
     }).then(res => res.json())
       .then(handleCondition)
+    }
+
+
+  })
+
+  useEffect(()=>{
+
+    const user = {user: props.user}
+
+    if (!randomJournalPost && user.user !== undefined){
+
+      const handleRandomPost = (random) => {
+        console.log(random.post)
+        setRandomJournalPost(random.post)
+      }
+
+      fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/random`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    }).then(res => res.json())
+      .then(handleRandomPost)
     }
   })
 
@@ -54,7 +77,7 @@ const Home = props => {
    } else if (currentCondition === "open") {
      return (
        <div>
-         {randomJournalPost ? <RandomEntry /> : null}
+         {randomJournalPost ? <RandomEntry randomPost={randomJournalPost} /> : null}
          <br></br>
          <br></br>
          <label style={{fontWeight: "bold"}}>Today's Entry:</label>
@@ -65,7 +88,7 @@ const Home = props => {
     } else if (currentCondition === "closed") {
       return (
         <div>
-          {randomJournalPost ? <RandomEntry /> : null}
+          {randomJournalPost ? <RandomEntry randomPost={randomJournalPost} /> : null}
           <p>Closed text box / edit/delete previous</p>
         </div>
       )

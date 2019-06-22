@@ -1,31 +1,14 @@
 import React from 'react'
 
-const RandomEntry = () => {
+const RandomEntry = (props) => {
   return (
-    <div className="random-entry-container">
-      whatvbfuyebvuyfbgvuyteguyvtuyvftuvguytrgv
-      fhvurtehngvuthnviubfhtbuvt
-      <br/>
-      vitubnvuthngviuhntgiuvhntughvtu
-      <br/>
-      gvtieunvuifhvuthngvuthiuvhntfiubhvutfvutf\
-      <br/>
-      vfivhtuhvutgvutfuvgtfuvbtfubvtufbvutfhbv
-      <br/>
-      gvtiubvutfbviutfubvtfbvtfughvufthvb
-      vviutgviuthguvhtiubgftubgutfghr
-      gvtiuhbutfhbgufhtgvhtfubgufthgviuftg
-      <br/>
-      vreivgeurgvhtughiuthnbguhftfhiui
-      vteriugvnitubgiutgbuiteiugvetiiu
-      geiturghviuethnbviunetugvetiuhvgiuertgnvuirt
-      <br/>
-      uvteughiuetgiuethnguhteughteiughuethgiuehgiuehnr
-      <br/>
-      rhgiuetrhgiueht
-      gueeriugnetiugn
-      <br/>
-      geuihriugehi
+    <div>
+      <br></br>
+      {new Date(props.randomPost.date_created).toDateString()}
+      <br></br>
+      <div className="random-entry-container">
+        {props.randomPost.content}
+      </div>
     </div>
   )
 }
