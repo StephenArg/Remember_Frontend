@@ -7,7 +7,6 @@ import Calender from './containers/Calender'
 function App() {
 
   const [user, setUser] = useState({})
-  console.log(user)
 
 
   useEffect(() => {

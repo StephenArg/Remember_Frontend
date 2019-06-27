@@ -1,11 +1,34 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
  
 const TextAreaInput = props => {
 
   const [entry, setEntry] = useState("")
+  const [edit, setEdit] = useState(false)
+
+  useEffect(()=> {
+    if (props.currentEntry !== undefined) {
+      setEdit(true)
+      setEntry(props.currentEntry.content)
+    }
+  }, [])
 
   const handleSubmit = () => {
 
+  if (edit){
+    const finalized_entry = {
+      content: entry,
+      entry_id: props.currentEntry.id
+    }
+
+    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/edit`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(finalized_entry)
+    }).then(res => res.json())
+    .then(props.verifyCondition)
+  } else {
     const finalized_entry = {
       date: props.user.current_date,
       user_id: props.user.id,
@@ -19,8 +42,8 @@ const TextAreaInput = props => {
       },
       body: JSON.stringify(finalized_entry)
     }).then(res => res.json())
-    .then(console.log())
-
+    .then(props.verifyCondition)
+  }
     props.setCurrentCondition("closed")
   }
 

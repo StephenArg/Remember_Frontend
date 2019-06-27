@@ -10,30 +10,28 @@ const Home = props => {
   const [currentEntry, setCurrentEntry] = useState(null)
 
   useEffect(() => {
-
     const date = {date: props.user.current_date}
-    console.log(date)
-    console.log(props.user)
-
+    
     if (currentCondition === "loading" && date.date !== undefined){
 
-      const handleCondition = (e) => {
-        if (e.entry === "none"){
-          setCurrentCondition("open")
-        } else {
-          setCurrentEntry(e.entry)
-          setCurrentCondition("closed")
-        }
-      }
+      // const handleCondition = (e) => {
+      //   if (e.entry === "none"){
+      //     setCurrentCondition("open")
+      //   } else {
+      //     setCurrentEntry(e.entry)
+      //     setCurrentCondition("closed")
+      //   }
+      // }
 
-      fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/verify`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(date)
-    }).then(res => res.json())
-      .then(handleCondition)
+    //   fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/verify`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(date)
+    // }).then(res => res.json())
+    //   .then(handleCondition)
+      verifyCondition(date)
     }
 
 
@@ -61,6 +59,33 @@ const Home = props => {
     }
   })
 
+  const handleCondition = (e) => {
+    if (e.entry === "none"){
+      setCurrentCondition("open")
+    } else {
+      setCurrentEntry(e.entry)
+      setCurrentCondition("closed")
+    }
+  }
+
+  const verifyCondition = () => {
+
+    const date = {date: props.user.current_date}
+
+    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(date)
+    }).then(res => res.json())
+      .then(handleCondition)
+  }
+
+  const handleEdit = () => {
+    setCurrentCondition("edit")
+  }
+
    if (!localStorage.getItem("token")) {
       return (
           <div>
@@ -82,14 +107,28 @@ const Home = props => {
          <br></br>
          <label style={{fontWeight: "bold"}}>Today's Entry:</label>
          <br></br>
-         <TextAreaInput user={props.user} setCurrentCondition={setCurrentCondition} />
+         <TextAreaInput user={props.user} setCurrentCondition={setCurrentCondition} verifyCondition={verifyCondition} />
        </div>
      )
     } else if (currentCondition === "closed") {
       return (
         <div>
           {randomJournalPost ? <RandomEntry randomPost={randomJournalPost} /> : null}
-          <p>Closed text box / edit/delete previous</p>
+          <p>Daily post completed!</p>
+        
+          <p><button className="edit_delete_buttons" onClick={handleEdit}>Edit</button> / <button className="edit_delete_buttons">Delete</button></p>
+        </div>
+      )
+    } else if (currentCondition === "edit") {
+      return (
+        <div>
+          {randomJournalPost ? <RandomEntry randomPost={randomJournalPost} /> : null}
+          <br></br>
+          <br></br>
+          <label style={{fontWeight: "bold"}}>Today's Entry:</label>
+          <br></br>
+          <TextAreaInput user={props.user} setCurrentCondition={setCurrentCondition} currentEntry={currentEntry} verifyCondition={verifyCondition} />
+          <p><button className="edit_delete_buttons" onClick={handleEdit}>Edit</button> / <button className="edit_delete_buttons">Delete</button></p>
         </div>
       )
     }

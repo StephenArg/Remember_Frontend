@@ -85,3 +85,8 @@ input {
 :-ms-input-placeholder {  
   text-align: center; 
 }
+
+.edit_delete_buttons {
+  background-color: olivedrab;
+  border:solid black 1px;
+}
