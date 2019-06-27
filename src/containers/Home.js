@@ -24,10 +24,10 @@ const Home = props => {
 
     if (!randomJournalPost && user.user !== undefined){
 
-      const handleRandomPost = (random) => {
-        console.log(random.post)
-        setRandomJournalPost(random.post)
-      }
+      // const handleRandomPost = (random) => {
+      //   console.log(random.post)
+      //   setRandomJournalPost(random.post)
+      // }
 
       fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/random`, {
       method: "POST",
@@ -35,19 +35,23 @@ const Home = props => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
-    }).then(res => res.json())
-      .then(handleRandomPost)
+        }).then(res => res.json())
+        .then(handleRandomPost)
     }
   })
 
   const handleCondition = (e) => {
     if (e.entry === "none"){
       setCurrentCondition("open")
-      console.log(currentEntry)
     } else {
       setCurrentEntry(e.entry)
       setCurrentCondition("closed")
     }
+  }
+
+  const handleRandomPost = (random) => {
+    console.log(random.post)
+    setRandomJournalPost(random.post)
   }
 
   const verifyCondition = () => {
@@ -101,7 +105,7 @@ const Home = props => {
    } else if (currentCondition === "open") {
      return (
        <div>
-         {randomJournalPost ? <RandomEntry randomPost={randomJournalPost} /> : null}
+         {randomJournalPost ? <RandomEntry user={props.user} randomPost={randomJournalPost} handleRandomPost={handleRandomPost} /> : null}
          <br></br>
          <br></br>
          <label style={{fontWeight: "bold"}}>Today's Entry:</label>
@@ -112,7 +116,7 @@ const Home = props => {
     } else if (currentCondition === "closed") {
       return (
         <div>
-          {randomJournalPost ? <RandomEntry randomPost={randomJournalPost} /> : null}
+          {randomJournalPost ? <RandomEntry user={props.user} randomPost={randomJournalPost} handleRandomPost={handleRandomPost}/> : null}
           <p>Daily post completed!</p>
         
           <p><button className="edit_delete_buttons" onClick={handleEdit}>Edit</button> / <button className="edit_delete_buttons" onClick={handleDelete}>Delete</button></p>
@@ -121,7 +125,7 @@ const Home = props => {
     } else if (currentCondition === "edit") {
       return (
         <div>
-          {randomJournalPost ? <RandomEntry randomPost={randomJournalPost} /> : null}
+          {randomJournalPost ? <RandomEntry user={props.user} randomPost={randomJournalPost} handleRandomPost={handleRandomPost} /> : null}
           <br></br>
           <br></br>
           <label style={{fontWeight: "bold"}}>Today's Entry:</label>

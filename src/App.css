@@ -1,7 +1,8 @@
 .App {
   text-align: center;
   min-height: 100vh;
-  background-color: olive;
+  background: #808000; /* fallback for old browsers */
+  background: linear-gradient(90deg, rgba(136,136,0,1) 0%, rgba(107,142,35,1) 100%);
   align-items: center
 }
 
@@ -25,7 +26,7 @@
   display: inline-block;
   margin-top: 5px;
   max-height: 30vh;
-  min-height: 10vh;
+  min-height: 8vh;
   min-width: 50%;
   max-width: 70%;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -33,11 +34,20 @@
   overflow: scroll;
   text-overflow: ellipsis;
   white-space: pre;
+  position:relative;
+}
+
+.skip_icon {
+  position:absolute;
+  bottom:0;
+  right:0;
+  width: 25px;
+  height: 25px;
 }
 
 #text-area-input{
   display: inline-block;
-  background-color: olivedrab;
+  background: #6b8e23; /* fallback for old browsers */
   border: solid black 3px;
   font-size: 16px;
   font-family: Verdana, Geneva, Tahoma, sans-serif
