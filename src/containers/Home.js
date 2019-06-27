@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import RandomEntry from '../components/RandomEntry'
 import AuthContainer from './AuthContainer'
 import TextAreaInput from '../components/TextAreaInput'
+import TextAreaInputEdit from '../components/TextAreaInputEdit'
  
 const Home = props => {
 
@@ -11,30 +12,10 @@ const Home = props => {
 
   useEffect(() => {
     const date = {date: props.user.current_date}
-    
+
     if (currentCondition === "loading" && date.date !== undefined){
-
-      // const handleCondition = (e) => {
-      //   if (e.entry === "none"){
-      //     setCurrentCondition("open")
-      //   } else {
-      //     setCurrentEntry(e.entry)
-      //     setCurrentCondition("closed")
-      //   }
-      // }
-
-    //   fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/verify`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(date)
-    // }).then(res => res.json())
-    //   .then(handleCondition)
       verifyCondition(date)
     }
-
-
   })
 
   useEffect(()=>{
@@ -62,6 +43,7 @@ const Home = props => {
   const handleCondition = (e) => {
     if (e.entry === "none"){
       setCurrentCondition("open")
+      console.log(currentEntry)
     } else {
       setCurrentEntry(e.entry)
       setCurrentCondition("closed")
@@ -85,6 +67,23 @@ const Home = props => {
   const handleEdit = () => {
     setCurrentCondition("edit")
   }
+
+  const handleDelete = () => {
+    const date = {date: props.user.current_date}
+
+    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/delete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(date)
+    }).then(verifyCondition)
+  }
+
+  const handleHide = () => {
+    setCurrentCondition("closed")
+  }
+
 
    if (!localStorage.getItem("token")) {
       return (
@@ -116,7 +115,7 @@ const Home = props => {
           {randomJournalPost ? <RandomEntry randomPost={randomJournalPost} /> : null}
           <p>Daily post completed!</p>
         
-          <p><button className="edit_delete_buttons" onClick={handleEdit}>Edit</button> / <button className="edit_delete_buttons">Delete</button></p>
+          <p><button className="edit_delete_buttons" onClick={handleEdit}>Edit</button> / <button className="edit_delete_buttons" onClick={handleDelete}>Delete</button></p>
         </div>
       )
     } else if (currentCondition === "edit") {
@@ -127,8 +126,8 @@ const Home = props => {
           <br></br>
           <label style={{fontWeight: "bold"}}>Today's Entry:</label>
           <br></br>
-          <TextAreaInput user={props.user} setCurrentCondition={setCurrentCondition} currentEntry={currentEntry} verifyCondition={verifyCondition} />
-          <p><button className="edit_delete_buttons" onClick={handleEdit}>Edit</button> / <button className="edit_delete_buttons">Delete</button></p>
+          <TextAreaInputEdit user={props.user} setCurrentCondition={setCurrentCondition} currentEntry={currentEntry} verifyCondition={verifyCondition} />
+          <p><button className="edit_delete_buttons" onClick={handleHide}>Hide</button> / <button className="edit_delete_buttons" onClick={handleDelete}>Delete</button></p>
         </div>
       )
     }
