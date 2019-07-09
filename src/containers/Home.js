@@ -24,11 +24,6 @@ const Home = props => {
 
     if (!randomJournalPost && user.user !== undefined){
 
-      // const handleRandomPost = (random) => {
-      //   console.log(random.post)
-      //   setRandomJournalPost(random.post)
-      // }
-
       fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/random`, {
       method: "POST",
       headers: {
@@ -50,12 +45,10 @@ const Home = props => {
   }
 
   const handleRandomPost = (random) => {
-    console.log(random.post)
     setRandomJournalPost(random.post)
   }
 
   const verifyCondition = () => {
-
     const date = {date: props.user.current_date}
 
     fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/verify`, {
@@ -105,7 +98,7 @@ const Home = props => {
    } else if (currentCondition === "open") {
      return (
        <div>
-         {randomJournalPost ? <RandomEntry user={props.user} randomPost={randomJournalPost} handleRandomPost={handleRandomPost} /> : null}
+         {randomJournalPost ? <RandomEntry user={props.user} randomPost={randomJournalPost} handleRandomPost={handleRandomPost} />: null}
          <br></br>
          <br></br>
          <label style={{fontWeight: "bold"}}>Today's Entry:</label>

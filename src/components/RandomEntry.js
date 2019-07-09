@@ -3,8 +3,6 @@ import skipIcon from '../icons/skip.png'
 
 const RandomEntry = (props) => {
 
-  console.log(props)
-
   const handleSkip = () => {
 
     const user = {user: props.user}
@@ -19,14 +17,18 @@ const RandomEntry = (props) => {
       .then(props.handleRandomPost)
   }
 
+  const dateString = new Date(props.randomPost.date_created).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
+
   return (
     <div>
       <br></br>
-      {new Date(props.randomPost.date_created).toDateString()}
+      <strong>{dateString}</strong>
       <br></br>
       <div className="random-entry-container">
         {props.randomPost.content}
-        <img onClick={handleSkip} className="skip_icon" src={skipIcon}></img>
+        <div onClick={handleSkip} style={{backgroundImage: `url(${skipIcon})`, backgroundSize: "25px 25px"}} className="tooltip wobble-horizontal">
+          <span class="tooltiptext">Click to skip</span>
+        </div>
       </div>
     </div>
   )
