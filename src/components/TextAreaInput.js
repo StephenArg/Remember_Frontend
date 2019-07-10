@@ -9,9 +9,9 @@ const TextAreaInput = props => {
     const finalized_entry = {
       date: props.user.current_date,
       user_id: props.user.id,
-      content: entry
+      content: entry.replace(/\t/g, '//t').replace(/\n/g, '//n')
     }
-
+  
     fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/create`, {
       method: "POST",
       headers: {

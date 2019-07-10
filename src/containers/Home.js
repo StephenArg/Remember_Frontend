@@ -45,6 +45,7 @@ const Home = props => {
   }
 
   const handleRandomPost = (random) => {
+    random.post.content = random.post.content.replace(/\/\/t/g, '\t').replace(/\/\/n/g, '\n')
     setRandomJournalPost(random.post)
   }
 

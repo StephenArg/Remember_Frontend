@@ -21,7 +21,7 @@ const HeaderLinks = props => {
 
   return (
     <div>
-      {props.onBackup ? null : <strong id='calendar-link' style={{position:"absolute", top: "87px", right:"290px" }} onClick={handleBackupClick}>Backup</strong> }
+      {props.onBackup ? null : <strong id='calendar-link' style={{position:"absolute", top: "87px", right:"290px" }} onClick={handleBackupClick}>Backup/Restore</strong> }
       {props.onHome ? <strong id='calendar-link' style={{position:"absolute", top: "87px", right:"135px" }} onClick={handleClick}>Calendar</strong> :
       <strong id='calendar-link' style={{position:"absolute", top: "87px", right:"155px" }} onClick={handleClick}>Home</strong> }
       <strong id='calendar-link' style={{position:"absolute", top: "87px", right:"10px" }} onClick={handleLogOut}>Log out</strong>
