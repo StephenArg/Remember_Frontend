@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import userAuthFetch from '../globallyUsedFunctions.js/UserAuthFetch'
 
-const Backup = props => {
+const Backup = () => {
   const [user, setUser] = useState({})
   const [backupJson, setBackupJson] = useState(``)
   const [restoreJson, setRestoreJson] = useState("")
@@ -11,7 +11,7 @@ const Backup = props => {
   }, [])
 
   if (user.id !== undefined && backupJson === "") {
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/backup`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/backup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -28,7 +28,7 @@ const Backup = props => {
   //  JSON.parse(restoreJson.replace(/quot;/g, '"').replace(/singQuot;/g, "\'").replace(/insideQuot;/g, '\\"'))
 
   if (window.confirm("Restoring will erase whatever current entries are present to prevent duplicates. Is that alright?")) {
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/restore`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/restore`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

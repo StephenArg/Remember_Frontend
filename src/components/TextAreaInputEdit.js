@@ -15,7 +15,7 @@ const TextAreaInputEdit = props => {
       entry_id: props.currentEntry.id
     }
 
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/edit`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/edit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

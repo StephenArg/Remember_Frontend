@@ -1,7 +1,7 @@
 const userAuthFetch = (setUser) => {
   const today = new Date().toISOString().slice(0, 10)
 
-  fetch(`http://${process.env.REACT_APP_API_LOCATION}/users/auth`, {
+  fetch(`${process.env.REACT_APP_API_LOCATION}/users/auth`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

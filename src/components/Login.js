@@ -22,7 +22,7 @@ const Login = (props) => {
       date: today
     }
 
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/users/login`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

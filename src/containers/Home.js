@@ -24,7 +24,7 @@ const Home = props => {
 
     if (!randomJournalPost && user.user !== undefined){
 
-      fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/random`, {
+      fetch(`${process.env.REACT_APP_API_LOCATION}/entries/random`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -52,7 +52,7 @@ const Home = props => {
   const verifyCondition = () => {
     const date = {date: props.user.current_date}
 
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/verify`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/verify`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -69,7 +69,7 @@ const Home = props => {
   const handleDelete = () => {
     const date = {fromTile: false, date: props.user.current_date}
 
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/delete`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/delete`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

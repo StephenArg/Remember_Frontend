@@ -12,7 +12,7 @@ const TextAreaInput = props => {
       content: entry.replace(/\t/g, '//t').replace(/\n/g, '//n')
     }
   
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/create`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

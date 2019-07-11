@@ -7,7 +7,7 @@ const RandomEntry = (props) => {
 
     const user = {user: props.user}
 
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/skip`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/skip`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

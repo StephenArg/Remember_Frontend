@@ -24,7 +24,7 @@ const SignUp = (props) => {
       date: today
     }
     
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/users/create`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/users/create`, {
       method: "POST",
       headers: {
         "Accept": "application/json",

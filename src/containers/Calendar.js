@@ -19,7 +19,7 @@ const Calendar = props => {
   })
 
   const handleSubmit = () => {
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/search`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/search`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -32,7 +32,7 @@ const Calendar = props => {
 
     let entryId = e.target.parentElement.dataset.id
 
-    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/delete`, {
+    fetch(`${process.env.REACT_APP_API_LOCATION}/entries/delete`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
