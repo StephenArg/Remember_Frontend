@@ -39,6 +39,8 @@
   text-overflow: ellipsis;
   white-space: pre;
   position:relative;
+  background-color: rgb(99, 130, 47);
+  border-radius: 15px
 }
 
 /* .skip_icon {
@@ -105,6 +107,11 @@ input {
 .edit_delete_buttons {
   background-color: olivedrab;
   border:solid black 1px;
+  border-radius: 15px
+}
+
+.submit-buttons {
+  border-radius: 10px
 }
 
 .tooltip {
@@ -236,4 +243,35 @@ input {
   animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
+}
+
+.entry-tile-container {
+  display: grid;
+  grid-column-gap: 50px;
+  grid-template-columns: 500px 500px 500px;
+  margin-left: 40px;
+}
+
+.entry-tile {
+  border: solid black 5px;
+  /* height: 75px;
+  width:50px; */
+  padding: 30px;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+  max-height: 250px;
+  overflow: scroll;
+  text-overflow: ellipsis;
+  position: relative;
+  border-radius: 15px
+}
+
+.tile-button-delete {
+  position:absolute;
+  top:0;
+  right:0;
+  margin-right:5px;
+  margin-top: 3px;
+  border-radius: 30px
 }

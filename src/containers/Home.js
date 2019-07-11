@@ -67,7 +67,7 @@ const Home = props => {
   }
 
   const handleDelete = () => {
-    const date = {date: props.user.current_date}
+    const date = {fromTile: false, date: props.user.current_date}
 
     fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/delete`, {
       method: "POST",
@@ -111,9 +111,12 @@ const Home = props => {
       return (
         <div>
           {randomJournalPost ? <RandomEntry user={props.user} randomPost={randomJournalPost} handleRandomPost={handleRandomPost}/> : null}
-          <p>Daily post completed!</p>
+          <br></br>
+          <div style={{border:'solid black 2px', width: '185px', display: 'inline-block', borderRadius: '5px'}}>
+            <p>Daily post completed!</p>
         
-          <p><button className="edit_delete_buttons" onClick={handleEdit}>Edit</button> / <button className="edit_delete_buttons" onClick={handleDelete}>Delete</button></p>
+            <p><button className="edit_delete_buttons" onClick={handleEdit}>Edit</button> / <button className="edit_delete_buttons" onClick={handleDelete}>Delete</button></p>
+          </div>
         </div>
       )
     } else if (currentCondition === "edit") {

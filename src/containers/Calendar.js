@@ -25,8 +25,40 @@ const Calendar = props => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({userId: user.id, date: date})
-        }).then(res => res.json()).then(console.log)
+        }).then(res => res.json()).then(setEntries)
   }
+
+  const handleDelete = (e) => {
+
+    let entryId = e.target.parentElement.dataset.id
+
+    fetch(`http://${process.env.REACT_APP_API_LOCATION}/entries/delete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({fromTile: true ,entryId: entryId})
+    }).then(() => {removeTile(entryId)})
+  }
+
+  const removeTile = (tileId) => {
+    setEntries(entries.filter((entry) => {
+        return entry.id !== parseInt(tileId)
+     })
+    )
+  }
+
+  let allEntries = entries.map((entry) => {
+    return (
+      <div className="entry-tile" data-id={entry.id}>
+        <button className="tile-button-delete" style={{backgroundColor: "olive", border: "solid black 1px"}} onClick={handleDelete} >Delete</button>
+        {new Date(entry.date_created).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+        <br></br>
+        <hr></hr>
+        {entry.content.replace(/\/\/t/g, '\t').replace(/\/\/n/g, '\n')}
+      </div>
+    )
+  })
 
   return (
     <div>
@@ -41,9 +73,16 @@ const Calendar = props => {
           min="2016-01-01" max="2100-12-31"
           onChange={e => setDate(e.target.value)} ></input>
         <br></br>
-        <button style={{backgroundColor: "olive", border: "solid black 1px"}} onClick={handleSubmit} >Search Entries</button>
+        <button className='submit-buttons' style={{backgroundColor: "olive", border: "solid black 1px"}} onClick={handleSubmit} >Search Entries</button>
       </div>}
 
+      <br></br>
+
+      {allEntries.length > 0 ? 
+        <div className="entry-tile-container">
+          {allEntries} 
+        </div>
+        : null}
 
     </div>
   )
