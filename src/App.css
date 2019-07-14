@@ -24,7 +24,7 @@
 .header-link:hover {
   cursor: pointer;
   color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  /* text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; */
 }
 
 .random-entry-container {
@@ -42,18 +42,8 @@
   white-space: pre;
   position:relative;
   background-color: rgb(99, 130, 47);
-  border-radius: 15px
+  border-radius: 15px;
 }
-
-/* .skip_icon {
-  position:absolute;
-  bottom:0;
-  right:0;
-  width: 25px;
-  height: 25px;
-  pointer-events: none
-} */
-
 
 #text-area-input{
   display: inline-block;
@@ -119,8 +109,8 @@ input {
 .tooltip {
   position: absolute;
   display: inline-block;
-  bottom: 0;
-  right: 0;
+  top: 0;
+  left: 0;
   width: 25px;
   height: 25px;
 }
@@ -138,113 +128,14 @@ input {
   /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
-  top: -5px;
-  right: 105%; 
+  top: 5px;
+  left: 105%;
 }
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
   transition-delay:.75s;
-}
-
-
-@-webkit-keyframes wobble-horizontal {
-  16.65% {
-    -webkit-transform: translateX(8px);
-    transform: translateX(8px);
-  }
-
-  33.3% {
-    -webkit-transform: translateX(-6px);
-    transform: translateX(-6px);
-  }
-
-  49.95% {
-    -webkit-transform: translateX(4px);
-    transform: translateX(4px);
-  }
-
-  66.6% {
-    -webkit-transform: translateX(-2px);
-    transform: translateX(-2px);
-  }
-
-  83.25% {
-    -webkit-transform: translateX(1px);
-    transform: translateX(1px);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-}
-
-@keyframes wobble-horizontal {
-  16.65% {
-    /* -webkit-transform: translateX(8px); */
-    transform: translateX(8px);
-    -moz-transform: translateX(8px);
-    -o-transform: translateX(8px);
-  }
-
-  33.3% {
-    /* -webkit-transform: translateX(-6px); */
-    transform: translateX(-6px);
-    -moz-transform: translateX(-6px);
-    -o-transform: translateX(-6px);
-  }
-
-  49.95% {
-    /* -webkit-transform: translateX(4px); */
-    transform: translateX(4px);
-    -moz-transform: translateX(4px);
-    -o-transform: translateX(4px);
-  }
-
-  66.6% {
-    /* -webkit-transform: translateX(-2px); */
-    transform: translateX(-2px);
-    -moz-transform: translateX(-2px);
-    -o-transform: translateX(-2px);
-  }
-
-  83.25% {
-    /* -webkit-transform: translateX(1px); */
-    transform: translateX(1px);
-    -moz-transform: translateX(1px);
-    -o-transform: translateX(1px);
-  }
-
-  100% {
-    /* -webkit-transform: translateX(0); */
-    transform: translateX(0px);
-    -moz-transform: translateX(0px);
-    -o-transform: translateX(0px);
-  }
-}
-
-.wobble-horizontal {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  animation: move 1s;
-}
-
-.wobble-horizontal:hover, .wobble-horizontal:focus, .wobble-horizontal:active {
-  -webkit-animation-name: wobble-horizontal;
-  animation-name: wobble-horizontal;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+  opacity: 0.8
 }
 
 .entry-tile-container {
@@ -256,8 +147,6 @@ input {
 
 .entry-tile {
   border: solid black 5px;
-  /* height: 75px;
-  width:50px; */
   padding: 30px;
   font-size: 30px;
   text-align: center;
@@ -281,5 +170,3 @@ input {
 .entry-tile:hover, .tile-button-delete:hover, .edit_delete_buttons:hover, .submit-buttons:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-
-

@@ -3,6 +3,7 @@ import RandomEntry from '../components/RandomEntry'
 import AuthContainer from './AuthContainer'
 import TextAreaInput from '../components/TextAreaInput'
 import TextAreaInputEdit from '../components/TextAreaInputEdit'
+import {motion} from 'framer-motion'
  
 const Home = props => {
 
@@ -45,8 +46,10 @@ const Home = props => {
   }
 
   const handleRandomPost = (random) => {
-    random.post.content = random.post.content.replace(/\/\/t/g, '\t').replace(/\/\/n/g, '\n')
-    setRandomJournalPost(random.post)
+    if (random.post !== undefined) {
+      random.post.content = random.post.content.replace(/\/\/t/g, '\t').replace(/\/\/n/g, '\n')
+      setRandomJournalPost(random.post)
+    }
   }
 
   const verifyCondition = () => {
@@ -93,7 +96,13 @@ const Home = props => {
     else if(currentCondition === "loading") {
     return (
       <div>
-          <h2>Loading...</h2>
+        <br></br>
+        <motion.div
+          animate={{scale: 1.5}}
+          transition={{flip: Infinity, duration: .75, repeatDelay: .15 }}
+          style={{maxWidth: "50%", display: "inline-block"}}>
+            <h2 style={{fontFamily: "Superclarendon", textShadow: '-1px -1px tan, 1px -1px 0 tan, -1px 1px 0 tan, 1px 1px 0 tan'}}>Fetching from Server...</h2>
+        </motion.div>
       </div>
     )
    } else if (currentCondition === "open") {

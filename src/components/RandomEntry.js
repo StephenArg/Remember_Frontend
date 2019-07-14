@@ -1,5 +1,6 @@
 import React from 'react'
 import skipIcon from '../icons/skip.png'
+import {motion} from 'framer-motion'
 
 const RandomEntry = (props) => {
 
@@ -17,7 +18,7 @@ const RandomEntry = (props) => {
       .then(props.handleRandomPost)
   }
 
-  const dateString = new Date(props.randomPost.date_created).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
+  const dateString = new Date(props.randomPost.date_created).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: "UTC" })
 
   return (
     <div>
@@ -26,9 +27,13 @@ const RandomEntry = (props) => {
       <br></br>
       <div className="random-entry-container">
         {props.randomPost.content}
-        <div onClick={handleSkip} style={{backgroundImage: `url(${skipIcon})`, backgroundSize: "25px 25px"}} className="tooltip wobble-horizontal">
+        <motion.div onClick={handleSkip}
+         style={{backgroundImage: `url(${skipIcon})`, backgroundSize: "25px 25px"}}
+         className="tooltip"
+         whileHover={{rotate: 360}}
+         transition={{ duration: 1 }}>
           <span class="tooltiptext">Click to skip</span>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
