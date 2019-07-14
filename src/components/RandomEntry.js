@@ -1,5 +1,5 @@
 import React from 'react'
-import skipIcon from '../icons/skip.png'
+// import skipIcon from '../icons/skip.png'
 import {motion} from 'framer-motion'
 
 const RandomEntry = (props) => {
@@ -28,7 +28,6 @@ const RandomEntry = (props) => {
       <div className="random-entry-container">
         {props.randomPost.content}
         <motion.div onClick={handleSkip}
-         style={{backgroundImage: `url(${skipIcon})`, backgroundSize: "25px 25px"}}
          className="tooltip"
          whileHover={{rotate: 360}}
          transition={{ duration: 1 }}>

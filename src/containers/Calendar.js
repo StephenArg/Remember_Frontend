@@ -117,7 +117,7 @@ const Calendar = props => {
       <div>
         <input type="date" id="start" name="trip-start"
           value={date}
-          min="2016-01-01" max="2100-12-31"
+          min="1950-01-01" max="2150-12-31"
           onChange={e => setDate(e.target.value)} ></input>
         <br></br>
         <button className='submit-buttons' style={{backgroundColor: "olive", border: "solid black 1px"}} onClick={handleSubmit} >Search Entries</button>

@@ -113,6 +113,13 @@ input {
   left: 0;
   width: 25px;
   height: 25px;
+  background: url('./icons/skip.png');
+  background-size: 25px 25px
+}
+
+.tooltip:active {
+  box-shadow: 1px 20px 20px 5px rgba(211,211,211,.1) inset;
+  background-size: 25px 25px
 }
 
 .tooltip .tooltiptext {
