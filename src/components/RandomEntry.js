@@ -21,17 +21,17 @@ const RandomEntry = (props) => {
   const dateString = new Date(props.randomPost.date_created).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: "UTC" })
 
   return (
-    <div>
+    <div style={{marginTop: "35px"}}>
       <br></br>
       <strong>{dateString}</strong>
       <br></br>
-      <div className="random-entry-container">
+      <div style={{marginTop: "20px"}} className="random-entry-container">
         {props.randomPost.content}
         <motion.div onClick={handleSkip}
          className="tooltip"
          whileHover={{rotate: 360}}
          transition={{ duration: 1 }}>
-          <span class="tooltiptext">Click to skip</span>
+          <span className="tooltiptext">Click to skip</span>
         </motion.div>
       </div>
     </div>

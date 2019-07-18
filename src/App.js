@@ -40,8 +40,8 @@ function App(){
           
         </header>
          
-        <Route path='/backup/'
-              render={() => <Backup />} />
+        {/* <Route path='/backup/'
+              render={() => <Backup />} /> */}
         <Route path='/calendar/' 
               render={() => <Calendar />} />
         <Route path='/' exact 

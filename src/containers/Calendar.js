@@ -89,10 +89,10 @@ const Calendar = props => {
   }
 
   let allEntries = entries.map((entry) => {
-    console.log(entry.date_created)
     return (
-      <div className="entry-tile" data-id={entry.id}>
-        <button className="tile-button-delete" style={{backgroundColor: "olive", border: "solid black 1px"}} onClick={handleDelete} >Delete</button>
+      <div className="entry-tile" data-id={entry.id} key={entry.id}>
+        <button className="tile-button-delete" style={{left:"400px", top:"18px", position: "sticky", backgroundColor: "olive", border: "solid black 1px"}} onClick={handleDelete} >Delete</button>
+        <br></br>
         {new Date(entry.date_created).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: "UTC"})}
         <br></br>
         <hr></hr>
@@ -136,7 +136,7 @@ const Calendar = props => {
         <div className="entry-tile-container">
           {allEntries} 
         </div>
-        : <text style={{fontWeight: "700", fontSize: 27}}>You have no entries on or before that date </text>) : null}
+        : <text style={{fontWeight: "700", fontSize: 27}}>You have no entries on or before this date </text>) : null}
 
       {newEntry ? 
         <div>

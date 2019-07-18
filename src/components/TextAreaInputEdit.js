@@ -38,7 +38,7 @@ const TextAreaInputEdit = props => {
   }
 
   return (
-      <div>
+      <div style={{marginTop:"20px"}}>
         <textarea id="text-area-input" rows="12" cols="80" autoFocus="true" value={entry} onChange={(e)=> setEntry(e.target.value)} onKeyDown={handleTextAreaKeys} >
         </textarea>
         <br></br>

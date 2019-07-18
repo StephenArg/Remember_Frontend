@@ -35,8 +35,8 @@ const TextAreaInput = props => {
   }
 
   return (
-      <div>
-        <textarea id="text-area-input" rows="12" cols="80" autoFocus="true" value={entry} onChange={(e)=> setEntry(e.target.value)} onKeyDown={handleTextAreaKeys} >
+      <div style={{marginTop:"20px"}}>
+        <textarea id="text-area-input" rows="12" cols="80" autoFocus={true} value={entry} onChange={(e)=> setEntry(e.target.value)} onKeyDown={handleTextAreaKeys} >
         </textarea>
         <br></br>
         <button className='submit-buttons' style={{backgroundColor: "olive", border: "solid black 1px"}} onClick={handleSubmit} >Submit Entry</button>
