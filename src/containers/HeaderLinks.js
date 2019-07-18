@@ -79,11 +79,11 @@ const HeaderLinks = props => {
 
   return (
     <React.Fragment>
-      {props.onBackup ? null : <strong className="header-link" style={{top: "12%", right: "22%"}} onClick={handleBackupClick} download="remember-backup.txt" href={blobLink}>Backup</strong> }
-      {props.onBackup ? null : <strong style={{position: "absolute", fontSize:"20px", top: "12%", right: "20.8%"}} >/</strong> }
-      {props.onBackup ? null :  <ReactFileReader fileTypes={[".txt"]} base64={true} handleFiles={handleFiles}><strong className="header-link" style={{top: "12%", right: "15%"}}>Restore</strong></ReactFileReader> }
-      {props.onHome ? <strong className='header-link' style={{top: "12%", right: "8%"}} onClick={handleClick}>Search</strong> :
-      <strong className='header-link' style={{top: "12%", right: "8.3%"}} onClick={handleClick}>Home</strong> }
+      {props.onBackup ? null : <strong className="header-link" style={{top: "12%", right: "18.5%"}} onClick={handleBackupClick}>Backup</strong> }
+      {props.onBackup ? null : <strong style={{position: "absolute", fontSize:"20px", top: "12%", right: "17.5%"}} >/</strong> }
+      {props.onBackup ? null :  <ReactFileReader fileTypes={[".txt"]} base64={true} handleFiles={handleFiles}><strong className="header-link" style={{top: "12%", right: "13%"}}>Restore</strong></ReactFileReader> }
+      {props.onHome ? <strong className='header-link' style={{top: "12%", right: "7%"}} onClick={handleClick}>Search</strong> :
+      <strong className='header-link' style={{top: "12%", right: "7%"}} onClick={handleClick}>Home</strong> }
       <strong className='header-link' style={{top: "12%", right: "1%"}} onClick={handleLogOut}>Log out</strong>
     </React.Fragment>
   )
