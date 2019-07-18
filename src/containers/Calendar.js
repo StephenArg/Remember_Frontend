@@ -91,12 +91,15 @@ const Calendar = props => {
   let allEntries = entries.map((entry) => {
     return (
       <div className="entry-tile" data-id={entry.id} key={entry.id}>
-        <button className="tile-button-delete" style={{left:"400px", top:"18px", position: "sticky", backgroundColor: "olive", border: "solid black 1px"}} onClick={handleDelete} >Delete</button>
-        <br></br>
-        {new Date(entry.date_created).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: "UTC"})}
-        <br></br>
-        <hr></hr>
-        {entry.content.replace(/\/\/t/g, '\t').replace(/\/\/n/g, '\n')}
+        <div className="inner-entry-tile">
+          <button className="tile-button-delete" style={{left:"400px", top:"18px", position: "sticky", backgroundColor: "olive", border: "solid black 1px"}} onClick={handleDelete} >Delete</button>
+          <br></br>
+          {new Date(entry.date_created).toLocaleString('en-us', {  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: "UTC"})}
+          <br></br>
+          <hr></hr>
+          {entry.content.replace(/\/\/t/g, '\t').replace(/\/\/n/g, '\n')}
+          <fade></fade>
+        </div>
       </div>
     )
   })
